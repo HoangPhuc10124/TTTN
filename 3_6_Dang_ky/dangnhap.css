@@ -69,7 +69,7 @@ header .btn-register {
     width: 106px;                  
     height: 32px;                  
     
-    background-image: url('../image/BUTTON ĐĂNG NHẬP.png'); 
+    background-image: url('image/BUTTON ĐĂNG NHẬP.png'); 
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -90,7 +90,7 @@ header .btn-register {
 
 /*  CHỈNH SỬA: Khi hover chuột vào -> Đổi sang ảnh nền màu xanh lá */
 header .btn-register:hover {
-    background-image: url('../image/BUTTON ĐĂNG NHẬP (HOVER).png'); 
+    background-image: url('image/BUTTON ĐĂNG NHẬP (HOVER).png'); 
 }
 
 header .btn-register:active {
