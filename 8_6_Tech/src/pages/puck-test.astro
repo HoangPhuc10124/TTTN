@@ -1,0 +1,199 @@
+---
+// src/pages/puck-test.astro
+// Bản chạy độc lập đầy đủ component - Sửa khớp hệ thống package local
+---
+
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hệ thống Thử Nghiệm Kéo Thả của Phúc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+
+    <div id="puck-root"></div>
+
+    <script>
+      import React from 'react';
+      import { createRoot } from 'react-dom/client';
+      import { Puck } from '@measured/puck';
+      import '@measured/puck/dist/index.css';
+
+      // --- CẤU HÌNH ĐẦY ĐỦ CÁC COMPONENT Y CHANG BẢN MẪU CỦA MENTOR ---
+      const puckConfigLocal = {
+        components: {
+          Heading: {
+            label: 'Tiêu đề',
+            fields: {
+              content: { type: 'text', label: 'Nội dung' },
+              level: {
+                type: 'select', label: 'Cấp độ',
+                options: [
+                  { label: 'H1', value: 1 }, { label: 'H2', value: 2 },
+                  { label: 'H3', value: 3 }, { label: 'H4', value: 4 }
+                ]
+              },
+              align: {
+                type: 'select', label: 'Căn lề',
+                options: [
+                  { label: 'Trái', value: 'left' },
+                  { label: 'Giữa', value: 'center' },
+                  { label: 'Phải', value: 'right' }
+                ]
+              }
+            },
+            defaultProps: { content: 'Tiêu đề mẫu', level: 2, align: 'left' },
+            render: ({ content, level, align }) => {
+              const Tag = `h${level}`;
+              return React.createElement(Tag, { style: { textAlign: align } }, content);
+            }
+          },
+
+          Text: {
+            label: 'Văn bản',
+            fields: {
+              content: { type: 'textarea', label: 'Nội dung' },
+              align: {
+                type: 'select', label: 'Căn lề',
+                options: [{ label: 'Trái', value: 'left' }, { label: 'Giữa', value: 'center' }, { label: 'Phải', value: 'right' }]
+              }
+            },
+            defaultProps: { content: 'Nhập nội dung đoạn văn...', align: 'left' },
+            render: ({ content, align }) => {
+              return React.createElement('p', { style: { textAlign: align }, className: "whitespace-pre-wrap" }, content);
+            }
+          },
+
+          Image: {
+            label: 'Ảnh',
+            fields: {
+              url: { type: 'text', label: 'URL Hình ảnh' },
+              alt: { type: 'text', label: 'Mô tả ảnh (Alt)' }
+            },
+            defaultProps: { url: 'https://via.placeholder.com/600x400', alt: 'Hình ảnh mẫu' },
+            render: ({ url, alt }) => {
+              return React.createElement('img', { src: url, alt: alt, style: { width: '100%', height: 'auto', display: 'block' } });
+            }
+          },
+
+          Section: {
+            label: 'Khoảng (Section)',
+            fields: {
+              container: {
+                type: 'select', label: 'Chiều rộng',
+                options: [
+                  { label: 'Small', value: 'sm' },
+                  { label: 'Medium', value: 'md' },
+                  { label: 'Large', value: 'lg' }
+                ]
+              },
+              background: {
+                type: 'object', label: 'Background',
+                objectFields: {
+                  type: {
+                    type: 'select', label: 'Loại nền',
+                    options: [{ label: 'Màu sắc', value: 'color' }, { label: 'Hình ảnh', value: 'image' }]
+                  },
+                  color: { type: 'text', label: 'Màu nền', default: '#ffffff' },
+                  bg_image: { type: 'text', label: 'URL ảnh nền' }
+                }
+              },
+              padding_x: { type: 'number', label: 'Padding ngang', default: 4 },
+              padding_y: { type: 'number', label: 'Padding dọc', default: 4 }
+            },
+            defaultProps: { container: 'lg', background: { type: 'color', color: '#ffffff' }, padding_x: 4, padding_y: 4 },
+            render: ({ container, background, padding_x, padding_y, children }) => {
+              const bgStyle = {};
+              const bg = background || {};
+              if (bg.type === 'color') bgStyle.backgroundColor = bg.color || 'transparent';
+              if (bg.type === 'image' && bg.bg_image) bgStyle.backgroundImage = `url(${bg.bg_image})`;
+              
+              const paddingStyle = `${(padding_y || 0) * 4}px ${(padding_x || 0) * 4}px`;
+
+              return React.createElement(
+                'section', 
+                { style: { ...bgStyle, padding: paddingStyle, border: '1px dashed #ccc' } },
+                React.createElement('div', { style: { maxWidth: '1280px', margin: '0 auto' } }, children)
+              );
+            }
+          },
+
+          HeroSenHong: {
+            label: 'Hero Sen Hồng',
+            fields: {
+              title: { type: 'text', label: 'Tiêu đề lớn' },
+              subtitle: { type: 'text', label: 'Tiêu đề phụ' },
+              bg_color: { type: 'text', label: 'Màu nền' }
+            },
+            defaultProps: { title: 'Chào Mừng Đến Với Sen Hồng', subtitle: 'Nơi kết nối tri thức và đam mê', bg_color: '#fff0f5' },
+            render: ({ title, subtitle, bg_color }) => {
+              return React.createElement(
+                'div',
+                { style: { backgroundColor: bg_color, padding: '60px 20px', textAlign: 'center', border: '1px dashed #ffb6c1' } },
+                React.createElement('h1', { style: { color: '#d11a5b', margin: '0 0 10px 0' } }, title),
+                React.createElement('p', { style: { color: '#555', margin: 0 } }, subtitle)
+              );
+            }
+          },
+
+          CácBanChuyênMôn: {
+            label: 'Các Ban Chuyên Môn',
+            fields: {
+              title: { type: 'text', label: 'Tiêu đề khối' },
+              description: { type: 'textarea', label: 'Mô tả chung các ban' }
+            },
+            defaultProps: { title: 'CÁC BAN CHUYÊN MÔN', description: 'Danh sách các ban hoạt động chính trong hệ thống.' },
+            render: ({ title, description }) => {
+              return React.createElement(
+                'div',
+                { style: { padding: '20px', border: '1px dashed #4caf50', background: '#f9fbf9' } },
+                React.createElement('h3', { style: { color: '#2e7d32', marginTop: 0 } }, title),
+                React.createElement('p', { style: { color: '#666', fontSize: '14px' } }, description)
+              );
+            }
+          },
+
+          GiớiThiệuNhânSự: {
+            label: 'Giới thiệu & Nhân sự',
+            fields: {
+              heading: { type: 'text', label: 'Tiêu đề ban nhân sự' },
+              total_members: { type: 'number', label: 'Số lượng nhân sự' }
+            },
+            defaultProps: { heading: 'Đội Ngũ Nhân Sự', total_members: 10 },
+            render: ({ heading, total_members }) => {
+              return React.createElement(
+                'div',
+                { style: { padding: '20px', border: '1px dashed #2196f3', background: '#f1f8ff' } },
+                React.createElement('h4', { style: { color: '#1565c0', margin: '0 0 5px 0' } }, heading),
+                React.createElement('p', { style: { margin: 0, fontSize: '14px' } }, `Tổng số thành viên: ${total_members} nhân sự`)
+              );
+            }
+          }
+        }
+      };
+
+      // Vẽ bảng điều khiển lên màn hình trình duyệt
+      const container = document.getElementById('puck-root');
+      if (container) {
+        const root = createRoot(container);
+        root.render(
+          React.createElement(Puck, {
+            config: puckConfigLocal,
+            data: { content: [], root: {} },
+            onChange: (data) => console.log("Data thay đổi:", data)
+          })
+        );
+      }
+    </script>
+
+    <style is:global>
+      html, body, #puck-root {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+      }
+    </style>
+  </body>
+</html>
