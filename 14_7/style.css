@@ -1,0 +1,641 @@
+/* ==========================================================================
+   1. ĐỊNH DẠNG CHUNG & BACKGROUND CHÍNH
+   ========================================================================== */
+body {
+    background-image: url('image/Logo-HaoKhiDuHiep.png'), url('image/BGTRANGVOTING.png');
+    background-size: min(400px, 22vw) auto, 100% auto;
+    background-position: top center, top center;
+    background-repeat: no-repeat, no-repeat;
+    background-color: #0b0214;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Spacer đẩy nội dung xuống dưới mặt 2 nhân vật chính */
+.spacer-top {
+    height: 420px;
+}
+
+.hero-section {
+    position: relative;
+}
+
+.hero-center-logo {
+    position: absolute;
+    top: -520px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(30vw, 240px);
+    height: min(10vw, 80px);
+    background-image: url('image/Logo-HaoKhiDuHiep.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.hero-center-image {
+    position: absolute;
+    top: -460px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(42vw, 450px);
+    height: 1500px;
+    background-image: url('image/text.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@media (max-width: 991px) {
+    .spacer-top {
+        height: 250px;
+    }
+}
+
+.fs-12 { font-size: 12px; }
+.fs-13 { font-size: 13px; }
+.fs-14 { font-size: 14px; }
+.text-magenta { color: #ff007f !important; }
+.text-magenta-light { color: #ff74c0 !important; }
+.text-cyan { color: #00f0ff !important; }
+.text-glow { text-shadow: 0 0 10px rgba(255, 193, 7, 0.6); }
+.cursor-pointer { cursor: pointer; }
+
+/* ==========================================================================
+   2. HEADER / NAVIGATION
+   ========================================================================== */
+.bg-dark-transparent {
+    background-color: #7d1087;
+    border-bottom: 2px solid #ffca11;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+
+.header-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 50px;
+    background-image: url('image/Logo-HaoKhiDuHiep.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-decoration: none;
+}
+
+.menu-frame {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: min(96vw, 960px);
+    max-width: 960px;
+    margin: 0 auto 16px;
+    padding: 8px 0 18px;
+}
+
+.menu-frame-bg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    background-image: url('image/khungdautrang.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.menu-frame .menu-tabs {
+    position: relative;
+    z-index: 2;
+    width: min(90vw, 860px);
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: nowrap;
+    padding-top: 0;
+    transform: translateY(-40px);
+}
+
+/* Nút đăng nhập sử dụng box.png */
+.btn-login {
+    background-image: url('image/đn.png'); /* File box.png của bạn */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    color: #ffffff !important;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 8px 24px;
+    text-shadow: 0 0 5px #00f0ff;
+    transition: transform 0.2s;
+}
+
+.btn-login:hover {
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   3. MENU TABS (Thanh chuyển đổi tab)
+   ========================================================================== */
+.menu-tabs {
+    background: transparent;
+    padding: 0;
+    display: inline-flex !important;
+    border: none;
+    box-shadow: none;
+}
+
+.btn-tab {
+    background-color: transparent;
+    border: none;
+    color: #b5adc6 !important;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 8px 20px !important;
+    transition: all 0.3s;
+}
+
+.btn-tab:hover {
+    color: #ffffff !important;
+    filter: brightness(1.2);
+}
+
+/* Tab Đăng ký đang kích hoạt dùng chữ Tham gia ngay */
+.btn-tab.active-register {
+    background: transparent;
+    width: auto;
+    height: auto;
+    padding: 14px 26px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    color: #ffffff !important;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-36px);
+    transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+.btn-tab.active-register:hover {
+    transform: translateY(-42px) scale(1.02);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.btn-register-image {
+    display: inline-block;
+}
+
+/* Other menu image buttons */
+.btn-thele-image, .btn-hd-image, .btn-taigame-image, .btn-napthe-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0;
+    border: none;
+    color: transparent !important;
+    display: inline-block;
+    width: 150px;
+    height: 70px;
+    transition: transform 0.15s ease;
+}
+
+.btn-thele-image {
+    background-image: url('image/thele.png');
+}
+
+.btn-hd-image {
+    background-image: url('image/hd.png');
+}
+
+.btn-taigame-image {
+    background-image: url('image/taigame.png');
+}
+
+.btn-napthe-image {
+    background-image: url('image/napthe.png');
+}
+
+.btn-thele-image:hover, .btn-hd-image:hover, .btn-taigame-image:hover, .btn-napthe-image:hover {
+    transform: translateY(-4px);
+}
+
+@media (max-width: 991px) {
+    .btn-thele-image, .btn-hd-image, .btn-taigame-image, .btn-napthe-image {
+        width: 110px;
+        height: 54px;
+    }
+}
+
+/* ==========================================================================
+   4. BOX ĐĂNG KÝ (Sử dụng boxitem.png làm viền khung)
+   ========================================================================== */
+/* Khung bọc tiêu đề sử dụng box text.png */
+.register-title-container {
+    background-image: url('image/đkdt.png'); /* File box text.png của bạn */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-title {
+    font-size: 24px;
+    color: #00f0ff;
+    text-shadow: 0 0 15px #00f0ff;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* Khung upload dùng ảnh nền riêng cho mỗi khung */
+.upload-container {
+    background: transparent;
+    border: none !important;
+    box-shadow: none;
+    padding: 0 0 8px !important;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.register-section .row.g-4 {
+    gap: 40px;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.register-section .col-lg-5 {
+    flex: 0 0 46%;
+    max-width: 46%;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: -260px;
+}
+
+.register-section .col-lg-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-left: 20px;
+}
+
+@media (max-width: 991px) {
+    .register-section .col-lg-5,
+    .register-section .col-lg-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+/* Khung nhập thông tin dùng nền tối, không dùng ảnh nền */
+.form-container {
+    background: transparent;
+    border: none !important;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 30px 30px !important;
+}
+
+/* Hộp tải ảnh lớn phía trong */
+.main-upload-box {
+    border: none;
+    border-radius: 16px;
+    background-image: url('image/themanh.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.3s;
+    width: 100%;
+    max-width: 1868px;
+    aspect-ratio: 803 / 503;
+    margin-bottom: 18px;
+    display: block;
+}
+
+.main-upload-box:hover {
+    filter: brightness(1.03);
+}
+
+/* Các hộp tải ảnh nhỏ phía dưới */
+.sub-upload-box {
+    border: none;
+    background-image: url('image/themanhnho.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+    transition: all 0.2s;
+    width: 220px;
+    height: 165px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub-upload-box:hover {
+    filter: brightness(1.03);
+}
+
+.upload-container .row.g-2 {
+    display: flex;
+    justify-content: center;
+    gap: 34px;
+    flex-wrap: nowrap;
+    margin-top: -190px;
+}
+.upload-container .img-small-row {
+    margin-bottom: 8px;
+}
+
+.upload-caption {
+    color: #ffffff;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 600;
+    opacity: 0.95;
+    text-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
+    letter-spacing: 0.5px;
+}
+.upload-container .row.g-2 .col-4 {
+    flex: 0 0 auto;
+    max-width: 220px;
+}
+
+/* ==========================================================================
+   5. FORM INPUTS & SELECTS
+   ========================================================================== */
+.header-info-game {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 12px;
+}
+
+.vertical-info .info-label {
+    color: #ffffff;
+    display: inline-block;
+    min-width: 90px;
+    font-size: 24px;
+}
+
+.vertical-info .info-value {
+    color: #ffd600;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.vertical-info .col-12 {
+    margin-bottom: 8px;
+}
+
+.custom-input {
+    background-color: transparent !important;
+    border: none !important;
+    color: #2a1f33 !important;
+    border-radius: 6px !important;
+    padding: 10px 15px !important;
+    box-shadow: none !important;
+}
+
+.address-box-input {
+    background-image: url('image/box text.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent !important;
+    border: none !important;
+    color: #2a1f33 !important;
+    padding: 18px 20px !important;
+    height: 60px;
+}
+
+.address-box-input::placeholder,
+.phone-box-input::placeholder,
+.area-box-input::placeholder {
+    color: rgba(42, 31, 51, 0.65) !important;
+}
+
+.phone-box-input,
+.area-box-input {
+    background-image: url('image/boxtextngan.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent !important;
+    border: none !important;
+    color: #2a1f33 !important;
+    padding: 16px 18px !important;
+    height: 55px;
+}
+
+.form-select.area-box-input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: #2a1f33 !important;
+    background-color: transparent !important;
+    text-indent: 0.01px;
+    text-overflow: '';
+}
+
+.form-select.area-box-input option,
+.form-select.area-box-input optgroup {
+    color: #2a1f33 !important;
+}
+
+.form-select.area-box-input option[value=""] {
+    color: rgba(42, 31, 51, 0.6) !important;
+}
+.custom-input::placeholder {
+    color: rgba(42,31,51,0.6) !important;
+}
+
+.custom-input:focus {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Radio buttons Miss/Mister */
+.custom-radio .form-check-input {
+    background-color: rgba(14, 5, 27, 0.8);
+    border: 1.5px solid #5a1a7c;
+}
+
+.custom-radio .form-check-input:checked {
+    background-color: #ff007f;
+    border-color: #ff007f;
+    box-shadow: 0 0 8px #ff007f;
+}
+
+.contest-label {
+    display: inline-block;
+    width: 110px;
+    height: 34px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.contest-label-miss {
+    background-image: url('image/thimiss.png');
+}
+
+.contest-label-mister {
+    background-image: url('image/thimisster.png');
+}
+
+/* Khu vực tải ảnh CMND/CCCD */
+.cccd-section {
+    margin-top: -10px;
+}
+
+.cccd-image {
+    width: 100%;
+    display: block;
+    border-radius: 0;
+    object-fit: contain;
+    height: 150px;
+    max-height: 150px;
+}
+
+/* ==========================================================================
+   6. NÚT ĐỒNG Ý & HỦY BỎ (Dùng boxlon.png)
+   ========================================================================== */
+/* Nút Đồng ý sử dụng ảnh */
+.btn-action-submit {
+    width: 132px;
+    height: 46px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    background-image: url('image/buttondongy.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.2s;
+    text-indent: -9999px;
+}
+
+.btn-action-submit:hover {
+    filter: brightness(1.25);
+    transform: translateY(-2px);
+}
+
+/* Nút Hủy bỏ sử dụng ảnh */
+.btn-action-cancel {
+    width: 132px;
+    height: 46px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    background-image: url('image/buttonhuybo.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.2s;
+    text-indent: -9999px;
+}
+
+.btn-action-cancel:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
+/* Nút đăng nhập dùng ảnh */
+.btn-login-header {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 95px;
+    height: 38px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    background-image: url('image/đn.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.btn-login-header:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.1);
+}
+
+/* Logo header dùng ảnh */
+.header-logo {
+    display: inline-block;
+    width: 140px;
+    height: 44px;
+    background-image: url('image/iconapp.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-decoration: none;
+}
+
+/* Intro textarea using large image background (boxtext bự) */
+.intro-box {
+    background-image: url('image/boxtext bự.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center left;
+    background-color: transparent !important;
+    border: none !important;
+    color: #2a1f33 !important;
+    padding: 22px 26px !important;
+    height: 120px;
+    min-height: 90px;
+    resize: vertical;
+    box-shadow: none !important;
+    outline: none !important;
+}
+.intro-box::placeholder {
+    color: rgba(42,31,51,0.6) !important;
+}
+
+/* Video input using box trắng.png */
+.video-box-input {
+    background-image: url('image/box trắng.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center left;
+    background-color: transparent !important;
+    border: none !important;
+    color: #2a1f33 !important;
+    padding: 12px 18px !important;
+    height: 48px;
+    min-height: 44px;
+}
+.video-box-input::placeholder {
+    color: rgba(42,31,51,0.6) !important;
+}
+.video-box-input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    background-color: transparent !important;
+}
+.intro-box:focus {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}

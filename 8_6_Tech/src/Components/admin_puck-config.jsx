@@ -1,202 +1,313 @@
-import AdminHeading from './admin-heading.jsx'; // Xem thử có cần thêm đuôi .jsx hoặc đổi thành chữ H viết hoa không
-import AdminText from './admin-text.jsx';
-import AdminImage from './admin-image.jsx';
-import AdminSection from './admin-section.jsx';
-import AdminHero from './admin-hero.jsx';
+import AdminHeading from "./admin-heading.jsx";
+import AdminText from "./admin-text.jsx";
+import AdminImage from "./admin-image.jsx";
+import AdminSection from "./admin-section.jsx";
+import AdminHero from "./admin-hero.jsx";
 
 export const puckConfig = {
   components: {
     Heading: {
-      label: 'Tiêu đề',
+      label: "Tiêu đề",
+
       fields: {
-        content: { type: 'text', label: 'Nội dung', contentEditable: true },
+        content: {
+          type: "text",
+          label: "Nội dung"
+        },
+
         level: {
-          type: 'select', label: 'Cấp độ',
+          type: "select",
+          label: "Cấp độ",
           options: [
-            { label: 'H1', value: 1 }, { label: 'H2', value: 2 },
-            { label: 'H3', value: 3 }, { label: 'H4', value: 4 },
-            { label: 'H5', value: 5 }, { label: 'H6', value: 6 }
+            { label: "H1", value: 1 },
+            { label: "H2", value: 2 },
+            { label: "H3", value: 3 },
+            { label: "H4", value: 4 },
+            { label: "H5", value: 5 },
+            { label: "H6", value: 6 }
           ]
         },
+
         align: {
-          type: 'select', label: 'Căn lề',
+          type: "select",
+          label: "Căn lề",
           options: [
-            { label: 'Trái', value: 'left' },
-            { label: 'Giữa', value: 'center' },
-            { label: 'Phải', value: 'right' }
+            { label: "Trái", value: "left" },
+            { label: "Giữa", value: "center" },
+            { label: "Phải", value: "right" }
           ]
         }
       },
-      defaultProps: { content: 'Tiêu đề', level: 2, align: 'left' },
+
+      defaultProps: {
+        content: "Tiêu đề",
+        level: 2,
+        align: "left"
+      },
+
       render: (props) => <AdminHeading {...props} />
     },
 
     Text: {
-      label: 'Văn bản',
+      label: "Văn bản",
+
       fields: {
-        content: { type: 'textarea', label: 'Nội dung', contentEditable: true },
+        content: {
+          type: "textarea",
+          label: "Nội dung"
+        },
+
         align: {
-          type: 'select', label: 'Căn lề',
+          type: "select",
+          label: "Căn lề",
           options: [
-            { label: 'Trái', value: 'left' },
-            { label: 'Giữa', value: 'center' },
-            { label: 'Phải', value: 'right' },
-            { label: 'Đều', value: 'justify' }
+            { label: "Trái", value: "left" },
+            { label: "Giữa", value: "center" },
+            { label: "Phải", value: "right" },
+            { label: "Đều", value: "justify" }
           ]
+        },
+
+        color: {
+          type: "text",
+          label: "Màu chữ"
+        },
+
+        fontSize: {
+          type: "number",
+          label: "Cỡ chữ"
+        },
+
+        fontWeight: {
+          type: "select",
+          label: "Độ đậm",
+          options: [
+            { label: "400", value: "400" },
+            { label: "500", value: "500" },
+            { label: "600", value: "600" },
+            { label: "700", value: "700" }
+          ]
+        },
+
+        lineHeight: {
+          type: "number",
+          label: "Line Height"
+        },
+
+        marginBottom: {
+          type: "number",
+          label: "Margin Bottom"
         }
       },
-      defaultProps: { content: 'Nhập văn bản ở đây...', align: 'left' },
+
+      defaultProps: {
+        content: "Nhập văn bản...",
+        align: "left",
+        color: "#374151",
+        fontSize: 16,
+        fontWeight: "400",
+        lineHeight: 1.6,
+        marginBottom: 16
+      },
+
       render: (props) => <AdminText {...props} />
     },
 
     Image: {
-      label: 'Ảnh',
+      label: "Ảnh",
+
       fields: {
-        src: { type: 'text', label: 'URL ảnh' },
-        alt: { type: 'text', label: 'Alt text' },
-        width: { type: 'text', label: 'Chiều rộng', default: '100%' },
-        height: { type: 'text', label: 'Chiều cao', default: 'auto' },
-        borderRadius: { type: 'text', label: 'Bo góc', default: '0' },
+        src: {
+          type: "text",
+          label: "URL ảnh"
+        },
+
+        alt: {
+          type: "text",
+          label: "Alt"
+        },
+
+        width: {
+          type: "text",
+          label: "Chiều rộng"
+        },
+
+        height: {
+          type: "text",
+          label: "Chiều cao"
+        },
+
+        borderRadius: {
+          type: "text",
+          label: "Bo góc"
+        },
+
         align: {
-          type: 'select', label: 'Căn lề',
+          type: "select",
+          label: "Căn lề",
           options: [
-            { label: 'Trái', value: 'left' },
-            { label: 'Giữa', value: 'center' },
-            { label: 'Phải', value: 'right' }
+            { label: "Trái", value: "left" },
+            { label: "Giữa", value: "center" },
+            { label: "Phải", value: "right" }
           ]
         }
       },
+
       defaultProps: {
-        src: 'https://via.placeholder.com/800x400',
-        alt: 'Ảnh minh họa',
-        width: '100%', height: 'auto', borderRadius: '0', align: 'center'
+        src: "https://picsum.photos/900/500",
+        alt: "Image",
+        width: "100%",
+        height: "auto",
+        borderRadius: "8px",
+        align: "center"
       },
+
       render: (props) => <AdminImage {...props} />
     },
 
     Section: {
-      label: 'Khoảng (Section)',
+      label: "Section",
+
       fields: {
         container: {
-          type: 'select', label: 'Chiều rộng',
+          type: "select",
+          label: "Container",
           options: [
-            { label: 'Small (640px)', value: 'sm' },
-            { label: 'Medium (768px)', value: 'md' },
-            { label: 'Large (1024px)', value: 'lg' },
-            { label: 'XL (1280px)', value: 'xl' }
+            { label: "640px", value: "sm" },
+            { label: "768px", value: "md" },
+            { label: "1024px", value: "lg" },
+            { label: "1280px", value: "xl" }
           ]
         },
-        background: {
-          type: 'object', label: 'Background',
-          properties: { // ĐÃ SỬA: objectFields đổi thành properties
-            type: {
-              type: 'select', label: 'Loại',
-              options: [
-                { label: 'Màu', value: 'color' },
-                { label: 'Gradient', value: 'gradient' },
-                { label: 'Ảnh', value: 'image' }
-              ]
-            },
-            color: { type: 'text', label: 'Màu nền', default: '#ffffff' },
-            fromColor: { type: 'text', label: 'Gradient từ', default: '#667eea' },
-            toColor: { type: 'text', label: 'Gradient đến', default: '#764ba2' },
-            direction: { type: 'text', label: 'Hướng gradient', default: 'to right' },
-            bg_image: { type: 'text', label: 'URL ảnh nền' },
-            opacity: { type: 'number', label: 'Độ mờ', min: 0, max: 1, step: 0.1, default: 1 }
-          }
+
+        paddingX: {
+          type: "number",
+          label: "Padding X"
         },
-        padding_x: { type: 'number', label: 'Padding ngang', min: 0, max: 16, default: 4 },
-        padding_y: { type: 'number', label: 'Padding dọc', min: 0, max: 16, default: 4 },
-        content: { type: 'slot' }
+
+        paddingY: {
+          type: "number",
+          label: "Padding Y"
+        },
+
+        backgroundColor: {
+          type: "text",
+          label: "Màu nền"
+        }
       },
+
       defaultProps: {
-        container: 'lg',
-        background: { type: 'color', color: '#ffffff' },
-        padding_x: 4, padding_y: 4,
-        content: []
+        container: "lg",
+        paddingX: 4,
+        paddingY: 4,
+        backgroundColor: "#ffffff"
       },
+
       render: (props) => <AdminSection {...props} />
     },
 
     Hero: {
-      label: 'Hero Banner',
+      label: "Hero Banner",
+
       fields: {
-        title: { type: 'text', label: 'Tiêu đề', contentEditable: true },
-        subtitle: { type: 'textarea', label: 'Mô tả ngắn', contentEditable: true },
+        title: {
+          type: "text",
+          label: "Tiêu đề"
+        },
+
+        subtitle: {
+          type: "textarea",
+          label: "Mô tả"
+        },
+
         buttons: {
-          type: 'array', label: 'Danh sách nút',
-          items: { // ĐÃ SỬA: arrayFields đổi thành items
+          type: "array",
+          label: "Danh sách nút",
+
+          items: {
             type: "object",
             properties: {
-              text: { type: 'text', label: 'Text nút', contentEditable: true },
-              url: { type: 'text', label: 'URL' },
+              text: { type: "text", label: "Text" },
+              url: { type: "text", label: "URL" },
               style: {
-                type: 'select', label: 'Style',
+                type: "select",
+                label: "Kiểu nút",
                 options: [
-                  { label: 'Primary', value: 'primary' },
-                  { label: 'Secondary', value: 'secondary' },
-                  { label: 'Outline', value: 'outline' }
+                  { label: "Primary", value: "primary" },
+                  { label: "Secondary", value: "secondary" },
+                  { label: "Outline", value: "outline" }
                 ]
               }
             }
           },
-          getItemSummary: (item) => item.text || "Nút"
+
+          getItemSummary: (item) => item.text || "Button"
         },
+
         background: {
-          type: 'object', label: 'Background',
-          properties: { // ĐÃ SỬA: objectFields đổi thành properties
+          type: "object",
+          label: "Background",
+          properties: {
             type: {
-              type: 'select', label: 'Loại',
+              type: "select",
+              label: "Loại",
               options: [
-                { label: 'Màu', value: 'color' },
-                { label: 'Gradient', value: 'gradient' },
-                { label: 'Ảnh', value: 'image' }
+                { label: "Color", value: "color" },
+                { label: "Gradient", value: "gradient" },
+                { label: "Image", value: "image" }
               ]
             },
-            color: { type: 'text', label: 'Màu nền', default: '#ffffff' },
-            gradientFrom: { type: 'text', label: 'Gradient từ', default: '#667eea' },
-            gradientTo: { type: 'text', label: 'Gradient đến', default: '#764ba2' },
-            gradientDirection: { type: 'text', label: 'Hướng', default: 'to bottom right' },
-            imageUrl: { type: 'text', label: 'URL ảnh nền' }
+
+            color: { type: "text", label: "Màu nền" },
+            gradientFrom: { type: "text", label: "Gradient From" },
+            gradientTo: { type: "text", label: "Gradient To" },
+            gradientDirection: { type: "text", label: "Direction" },
+            imageUrl: { type: "text", label: "Image URL" }
           }
         },
+
         layout: {
-          type: 'object', label: 'Bố cục',
-          properties: { // ĐÃ SỬA: objectFields đổi thành properties
+          type: "object",
+          label: "Layout",
+          properties: {
             align: {
-              type: 'select', label: 'Căn lề',
+              type: "select",
+              label: "Căn lề",
               options: [
-                { label: 'Trái', value: 'left' },
-                { label: 'Giữa', value: 'center' },
-                { label: 'Phải', value: 'right' }
+                { label: "Left", value: "left" },
+                { label: "Center", value: "center" },
+                { label: "Right", value: "right" }
               ]
             }
           }
         }
       },
+
       defaultProps: {
-        title: 'Chào mừng đến với website',
-        subtitle: 'Chúng tôi cung cấp những sản phẩm và dịch vụ tốt nhất',
+        title: "Chào mừng",
+        subtitle: "Đây là Hero Banner",
         buttons: [
-          { text: 'Tìm hiểu thêm', url: '#', style: 'primary' },
-          { text: 'Liên hệ', url: '#contact', style: 'outline' }
+          { text: "Bắt đầu", url: "#", style: "primary" }
         ],
         background: {
-          type: 'gradient',
-          gradientFrom: '#667eea',
-          gradientTo: '#764ba2',
-          gradientDirection: 'to bottom right'
+          type: "gradient",
+          gradientFrom: "#667eea",
+          gradientTo: "#764ba2",
+          gradientDirection: "to right"
         },
-        layout: { align: 'center' }
+        layout: {
+          align: "center"
+        }
       },
+
       render: (props) => <AdminHero {...props} />
     }
   },
 
   categoryGroups: [
-    { title: 'Cơ bản', components: ['Heading', 'Text', 'Image'] },
-    { title: 'Layout', components: ['Section'] },
-    { title: 'Nâng cao', components: ['Hero'] }
+    { title: "Cơ bản", components: ["Heading", "Text", "Image"] },
+    { title: "Layout", components: ["Section"] },
+    { title: "Nâng cao", components: ["Hero"] }
   ],
 
   root: {

@@ -1,15 +1,35 @@
-import React from 'react';
+import React from "react";
 
-// Image component — render ảnh với URL, width, height, align.
-const AdminImage = ({ src, alt, width = '100%', height = 'auto', borderRadius = '0', align = 'center' }) => {
-  const alignClass = align === 'center' ? 'mx-auto' : align === 'right' ? 'ml-auto' : 'mr-auto';
+const AdminImage = ({
+  src,
+  alt,
+  width = "100%",
+  height = "auto",
+  borderRadius = "0",
+  align = "center",
+  objectFit = "cover",
+  shadow = false,
+  marginBottom = 20,
+}) => {
   return (
-    <div className={`p-4 ${alignClass}`} style={{ maxWidth: width }}>
+    <div
+      style={{
+        textAlign: align,
+        marginBottom: `${marginBottom}px`,
+      }}
+    >
       <img
-        src={src || 'https://via.placeholder.com/800x400'}
-        alt={alt || 'Ảnh minh họa'}
-        style={{ width: '100%', height, borderRadius }}
-        className="object-cover"
+        src={src}
+        alt={alt}
+        style={{
+          width,
+          height,
+          objectFit,
+          borderRadius,
+          boxShadow: shadow
+            ? "0 8px 20px rgba(0,0,0,.15)"
+            : "none",
+        }}
       />
     </div>
   );
